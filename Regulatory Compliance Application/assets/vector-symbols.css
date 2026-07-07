@@ -1,0 +1,135 @@
+/* Shared vector symbols for navigation, modules, and headers. */
+.mets-vector-icon{
+  width:1em;
+  height:1em;
+  display:block;
+  flex:0 0 auto;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:1.9;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.ae-theme-preview .mets-vector-icon,
+.theme-swatch-preview .mets-vector-icon{
+  width:34px;
+  height:34px;
+  color:#fff;
+  stroke-width:1.75;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,.45));
+}
+
+.ae-theme-preview,
+.theme-swatch-preview{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#fff!important;
+  font-size:0!important;
+}
+
+.ae-theme-swatch.active .ae-theme-preview .mets-vector-icon,
+.theme-swatch.active .theme-swatch-preview .mets-vector-icon{
+  color:#ecfeff;
+  filter:drop-shadow(0 0 8px rgba(34,211,238,.85)) drop-shadow(0 2px 8px rgba(0,0,0,.45));
+}
+
+.sys-tab-icon .mets-vector-icon,
+.mob-icon .mets-vector-icon{
+  width:15px;
+  height:15px;
+}
+
+.mod-icon .mets-vector-icon,
+.nc-icon .mets-vector-icon,
+.ci .mets-vector-icon,
+.ae-preview-symbol .mets-vector-icon{
+  width:18px;
+  height:18px;
+}
+
+.mets-vector-title-icon{
+  width:28px;
+  height:28px;
+  min-width:28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:9px;
+  vertical-align:-6px;
+  border-radius:10px;
+  color:var(--nav-accent,var(--forest));
+  background:color-mix(in srgb,var(--nav-accent,var(--sage)) 14%,transparent);
+  border:1px solid color-mix(in srgb,var(--nav-accent,var(--sage)) 30%,transparent);
+}
+
+.mets-vector-title-icon .mets-vector-icon{
+  width:16px;
+  height:16px;
+}
+
+.module-pro-hero .mets-vector-title-icon,
+.analytics-hero .mets-vector-title-icon,
+.comp-brand-title .mets-vector-title-icon,
+.module-pro-heading .mets-vector-title-icon,
+.analytics-heading .mets-vector-title-icon{
+  color:#fff;
+  background:rgba(255,255,255,.16);
+  border-color:rgba(255,255,255,.28);
+}
+
+.sys-tab-icon,
+.mod-icon,
+.ci,
+.nc-icon,
+.mob-icon{
+  line-height:1;
+}
+
+.sys-tab-icon[data-vector-icon],
+.mod-icon[data-vector-icon],
+.ci[data-vector-icon],
+.nc-icon[data-vector-icon],
+.mob-icon[data-vector-icon]{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+}
+
+.comp-nav-item .ci[data-vector-icon]{
+  width:25px!important;
+  height:25px!important;
+  min-width:25px!important;
+  border-radius:8px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.10);
+  color:rgba(226,241,232,.82);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.comp-nav-item.active .ci[data-vector-icon]{
+  background:linear-gradient(135deg,var(--nav-accent-glow,rgba(34,211,238,.28)),rgba(255,255,255,.12));
+  border-color:color-mix(in srgb,var(--nav-accent,#22d3ee) 50%,rgba(255,255,255,.18));
+  color:#fff;
+  box-shadow:0 0 18px var(--nav-accent-glow,rgba(34,211,238,.25)), inset 0 1px 0 rgba(255,255,255,.20);
+}
+
+.comp-nav-item .ci[data-vector-icon="water"]{color:#7dd3fc;}
+.comp-nav-item .ci[data-vector-icon="waste"],
+.comp-nav-item .ci[data-vector-icon="issue"]{color:#fbbf24;}
+.comp-nav-item .ci[data-vector-icon="air"]{color:#c4b5fd;}
+.comp-nav-item .ci[data-vector-icon="stack"],
+.comp-nav-item .ci[data-vector-icon="site"]{color:#93c5fd;}
+.comp-nav-item .ci[data-vector-icon="shield"]{color:#86efac;}
+.comp-nav-item .ci[data-vector-icon="release"]{color:#67e8f9;}
+.comp-nav-item .ci[data-vector-icon="permit"]{color:#fde68a;}
+.comp-nav-item .ci[data-vector-icon="reports"]{color:#ddd6fe;}
+.comp-nav-item .ci[data-vector-icon="ai"]{color:#f0abfc;}
+
+@supports not (background:color-mix(in srgb,#000 10%,transparent)){
+  .mets-vector-title-icon{
+    background:rgba(123,170,28,.14);
+    border-color:rgba(123,170,28,.30);
+  }
+}

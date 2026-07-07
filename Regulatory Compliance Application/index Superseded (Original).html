@@ -103,7 +103,7 @@ img[src*="assets/mets-logo.png"]{
 /* ===== RESET & GLOBAL ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;font-size:14px;}
-body{font-family:'DM Sans',sans-serif;overflow-x:hidden;overflow-y:hidden;}
+body{font-family:'DM Sans',sans-serif;overflow-x:hidden;}
 
 /* ===== ROOT VARIABLES ===== */
 :root{
@@ -219,7 +219,6 @@ body{font-family:'DM Sans',sans-serif;overflow-x:hidden;overflow-y:hidden;}
 .login-btn:hover{background:var(--canopy,#3b6b38);transform:translateY(-1px);box-shadow:0 8px 28px rgba(90,138,79,.35);}
 .login-btn:active{transform:translateY(0);}
 .login-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
-.login-back-btn:hover{background:rgba(123,170,28,.1)!important;border-color:rgba(123,170,28,.5)!important;color:rgba(200,223,160,.95)!important;}
 
 .login-hint{margin-top:1.5rem;text-align:center;font-size:.72rem;color:rgba(200,223,160,.28);line-height:1.7;}
 .login-hint strong{color:rgba(200,223,160,.48);}
@@ -3451,352 +3450,6 @@ select[id^="rtt-filter-"]:focus{
  }
 }
 </style>
-<style id="rtt-ui-polish">
-/* ============================================================
- REGULATORY TASK TRACKER - UI POLISH LAYER
- Professional visual refresh: depth, motion, refined states
- ============================================================ */
-
-/* ---- Full-width workspace (Saved Files panel + KPI row removed) ---- */
-.rtt-main{max-width:none!important;padding:18px 28px 50px!important;}
-@media(min-width:1500px){.rtt-split{grid-template-columns:minmax(0,1fr) 420px;}}
-
-/* ---- Team member strip (click to filter / open profile) ---- */
-.rtt-team-strip{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px;}
-.rtt-team-strip:empty{display:none;}
-.rtt-team-strip-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#6B8775;margin-right:2px;}
-.rtt-team-chip{
- display:flex;align-items:center;gap:8px;
- background:#fff;border:1px solid rgba(33,70,46,.14);border-radius:999px;
- padding:4px 12px 4px 4px;cursor:pointer;
- box-shadow:0 1px 2px rgba(16,41,23,.05);
- transition:all .2s cubic-bezier(.2,.8,.3,1);
- font-family:'DM Sans',sans-serif;
-}
-.rtt-team-chip:hover{transform:translateY(-2px);border-color:rgba(11,83,148,.4);box-shadow:0 6px 16px rgba(11,83,148,.14);}
-.rtt-team-chip.active{border-color:#0B5394;background:linear-gradient(135deg,#F0F7FF,#fff);box-shadow:0 0 0 3px rgba(11,83,148,.1),0 6px 16px rgba(11,83,148,.14);}
-.rtt-team-chip .rtc-avatar{width:28px;height:28px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,var(--forest,#21462e),#22C55E);display:grid;place-items:center;color:#fff;font-size:9px;font-weight:900;flex:0 0 auto;}
-.rtt-team-chip .rtc-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-.rtt-team-chip .rtc-name{font-size:11px;font-weight:700;color:#102917;line-height:1.1;white-space:nowrap;}
-.rtt-team-chip .rtc-role{font-size:8.5px;color:#6B8775;line-height:1.2;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis;}
-.rtt-team-chip .rtc-count{
- font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
- background:#EFF4FC;color:#0B5394;border:1px solid #BFDBFE;
- border-radius:999px;padding:1px 7px;margin-left:2px;
-}
-.rtt-team-chip.active .rtc-count{background:#0B5394;color:#fff;border-color:#0B5394;}
-
-/* ---- Member profile slide-over ---- */
-#rtt-member-overlay{
- position:fixed;inset:0;z-index:4000;display:none;
- background:rgba(10,25,15,.45);backdrop-filter:blur(3px);
-}
-#rtt-member-overlay.open{display:block;animation:rttOverlayIn .25s ease both;}
-@keyframes rttOverlayIn{from{opacity:0;}to{opacity:1;}}
-.rtt-member-panel{
- position:absolute;top:0;right:0;bottom:0;width:400px;max-width:94vw;
- background:#fff;box-shadow:-24px 0 60px rgba(10,25,15,.35);
- display:flex;flex-direction:column;overflow:hidden;
- animation:rttPanelIn .32s cubic-bezier(.2,.8,.3,1) both;
-}
-@keyframes rttPanelIn{from{transform:translateX(60px);opacity:0;}to{transform:translateX(0);opacity:1;}}
-.rtt-mp-head{
- position:relative;padding:22px 20px 18px;color:#fff;
- background:linear-gradient(140deg,#0d3d14,#002803);
- display:flex;gap:14px;align-items:center;flex-shrink:0;
-}
-.rtt-mp-avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;flex:0 0 auto;border:2px solid rgba(123,170,28,.5);box-shadow:0 8px 22px rgba(0,0,0,.35);background:linear-gradient(135deg,#21462e,#22C55E);display:grid;place-items:center;font-size:20px;font-weight:900;color:#fff;}
-.rtt-mp-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-.rtt-mp-name{font-size:16px;font-weight:800;line-height:1.2;}
-.rtt-mp-role{font-size:11px;color:rgba(200,223,160,.75);margin-top:3px;line-height:1.35;}
-.rtt-mp-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.1);border:none;color:#fff;width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:13px;transition:background .15s;}
-.rtt-mp-close:hover{background:rgba(183,28,28,.7);}
-.rtt-mp-body{flex:1;overflow-y:auto;padding:16px 20px 24px;}
-.rtt-mp-bio{font-size:11.5px;color:#4A6355;line-height:1.6;background:#F4F8F4;border-radius:9px;padding:10px 12px;margin-bottom:12px;}
-.rtt-mp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px;}
-.rtt-mp-tag{font-size:9.5px;font-weight:700;background:#EFF4FC;color:#0B5394;border:1px solid #BFDBFE;border-radius:999px;padding:2px 9px;}
-.rtt-mp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:8px;}
-.rtt-mp-stat{border:1px solid rgba(33,70,46,.1);border-radius:10px;padding:8px 6px;text-align:center;background:linear-gradient(180deg,#fff,#f8fbf8);}
-.rtt-mp-stat strong{display:block;font-family:'DM Mono',monospace;font-size:18px;line-height:1;color:var(--ms,#0B5394);}
-.rtt-mp-stat span{display:block;font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#6B8775;margin-top:4px;}
-.rtt-mp-sec{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#6B8775;margin:16px 0 8px;display:flex;justify-content:space-between;align-items:center;}
-.rtt-mp-task{
- display:flex;align-items:center;gap:9px;padding:8px 11px;
- border:1px solid rgba(33,70,46,.09);border-radius:9px;margin-bottom:6px;
- cursor:pointer;background:#fff;transition:all .18s;
- border-left-width:3px;
-}
-.rtt-mp-task:hover{border-color:rgba(11,83,148,.35);transform:translateX(2px);box-shadow:0 4px 12px rgba(11,83,148,.1);}
-.rtt-mp-task .mpt-title{flex:1;min-width:0;font-size:11.5px;font-weight:600;color:#102917;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.rtt-mp-task .mpt-due{font-size:9.5px;font-family:'DM Mono',monospace;color:#6B8775;white-space:nowrap;}
-.rtt-mp-task .mpt-due.overdue{color:#B71C1C;font-weight:700;}
-.rtt-mp-filter-btn{
- width:100%;margin-top:14px;padding:9px;border-radius:9px;cursor:pointer;
- background:#0B5394;color:#fff;border:none;font-family:'DM Sans',sans-serif;
- font-size:12px;font-weight:700;letter-spacing:.02em;
- transition:background .18s,transform .18s,box-shadow .18s;
-}
-.rtt-mp-filter-btn:hover{background:#094276;transform:translateY(-1px);box-shadow:0 8px 20px rgba(11,83,148,.3);}
-.rtt-mp-empty{font-size:11px;color:#8C9490;font-style:italic;padding:6px 0;}
-@media(max-width:520px){.rtt-mp-stats{grid-template-columns:repeat(2,1fr);}}
-@media(prefers-reduced-motion:reduce){#rtt-member-overlay.open,.rtt-member-panel{animation:none!important;}}
-
-/* ---- Motion primitives ---- */
-@keyframes rttFadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-@keyframes rttSlideIn{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:translateX(0);}}
-@keyframes rttShimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
-@keyframes rttPulseDot{0%,100%{box-shadow:0 0 0 0 rgba(183,28,28,.35);}50%{box-shadow:0 0 0 6px rgba(183,28,28,0);}}
-
-/* ---- KPI cards: gradient wash, hover lift, accent glow ---- */
-.rtt-kpi{
- border:1px solid rgba(33,70,46,.1)!important;
- border-radius:14px!important;
- background:linear-gradient(150deg,#ffffff 0%,#f7faf7 100%)!important;
- box-shadow:0 2px 4px rgba(16,41,23,.04),0 10px 24px rgba(16,41,23,.05)!important;
- transition:transform .25s cubic-bezier(.2,.8,.3,1),box-shadow .25s ease,border-color .25s ease;
- cursor:default;
- animation:rttFadeUp .45s ease both;
-}
-.rtt-kpi:nth-child(1){animation-delay:.02s;} .rtt-kpi:nth-child(2){animation-delay:.06s;}
-.rtt-kpi:nth-child(3){animation-delay:.10s;} .rtt-kpi:nth-child(4){animation-delay:.14s;}
-.rtt-kpi:nth-child(5){animation-delay:.18s;} .rtt-kpi:nth-child(6){animation-delay:.22s;}
-.rtt-kpi:hover{
- transform:translateY(-3px);
- box-shadow:0 4px 8px rgba(16,41,23,.06),0 18px 38px rgba(16,41,23,.12)!important;
- border-color:rgba(33,70,46,.2)!important;
-}
-.rtt-kpi::before{width:4px!important;border-radius:4px 0 0 4px;}
-.rtt-kpi::after{
- content:'';position:absolute;top:0;right:0;width:72px;height:72px;border-radius:50%;
- background:radial-gradient(circle,var(--kpi-glow,rgba(11,83,148,.07)),transparent 68%);
- transform:translate(24%,-24%);pointer-events:none;
-}
-.rtt-kpi.kpi-total{--kpi-glow:rgba(11,83,148,.09);}
-.rtt-kpi.kpi-urgent{--kpi-glow:rgba(183,28,28,.09);}
-.rtt-kpi.kpi-open{--kpi-glow:rgba(230,81,0,.09);}
-.rtt-kpi.kpi-new{--kpi-glow:rgba(123,31,162,.09);}
-.rtt-kpi.kpi-done{--kpi-glow:rgba(46,125,50,.10);}
-.rtt-kpi.kpi-overdue{--kpi-glow:rgba(183,28,28,.11);}
-.rtt-kpi-value{
- font-size:30px!important;
- letter-spacing:-.02em;
- font-variant-numeric:tabular-nums;
- transition:color .2s;
-}
-.rtt-kpi.kpi-urgent .rtt-kpi-value,.rtt-kpi.kpi-overdue .rtt-kpi-value{color:#B71C1C!important;}
-.rtt-kpi.kpi-done .rtt-kpi-value{color:#1B5E20!important;}
-
-/* ---- Tabs: pill style with soft active state ---- */
-.rtt-tab-nav{
- gap:6px!important;
- border-bottom:none!important;
- background:#eef3ee;
- padding:5px;
- border-radius:12px;
- width:fit-content;
- max-width:100%;
- box-shadow:inset 0 1px 3px rgba(16,41,23,.07);
-}
-.rtt-tab-btn{
- border-radius:8px!important;
- border-bottom:none!important;
- padding:8px 18px!important;
- font-weight:600!important;
- letter-spacing:.01em;
- transition:all .22s cubic-bezier(.2,.8,.3,1)!important;
-}
-.rtt-tab-btn:hover{background:rgba(255,255,255,.65);}
-.rtt-tab-btn.active{
- background:#fff!important;
- color:#0B5394!important;
- box-shadow:0 2px 6px rgba(16,41,23,.12),0 1px 2px rgba(16,41,23,.08);
-}
-
-/* ---- Panes animate in on switch ---- */
-.rtt-pane.active{animation:rttFadeUp .3s ease both;}
-
-/* ---- Cards: softer radius, layered shadow ---- */
-.rtt-card{
- border-radius:14px!important;
- border-color:rgba(33,70,46,.1)!important;
- box-shadow:0 1px 3px rgba(16,41,23,.05),0 12px 28px rgba(16,41,23,.05)!important;
-}
-
-/* ---- Filter bar: contained toolbar look ---- */
-.rtt-filter-bar{
- background:#f4f8f4;
- border:1px solid rgba(33,70,46,.09);
- border-radius:10px;
- padding:9px 10px;
- gap:8px!important;
-}
-.rtt-filter-bar select,.rtt-filter-bar input{
- border-radius:8px!important;
- border:1px solid rgba(33,70,46,.16)!important;
- padding:7px 11px!important;
- background:#fff!important;
- box-shadow:0 1px 2px rgba(16,41,23,.05);
- transition:border-color .18s,box-shadow .18s,transform .18s;
- outline:none;
-}
-.rtt-filter-bar select:hover,.rtt-filter-bar input:hover{border-color:rgba(11,83,148,.4)!important;}
-.rtt-filter-bar select:focus,.rtt-filter-bar input:focus{
- border-color:#0B5394!important;
- box-shadow:0 0 0 3px rgba(11,83,148,.12);
-}
-.rtt-filter-bar select{cursor:pointer;appearance:none;-webkit-appearance:none;
- background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B8775' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;
- background-repeat:no-repeat!important;background-position:right 10px center!important;
- padding-right:28px!important;
-}
-
-/* ---- Task rows: entrance stagger, hover elevation ---- */
-.rtt-task-row{
- border-radius:12px!important;
- border-color:rgba(33,70,46,.09)!important;
- box-shadow:0 1px 2px rgba(16,41,23,.04);
- transition:transform .2s cubic-bezier(.2,.8,.3,1),box-shadow .2s ease,border-color .2s ease,background .2s ease!important;
- animation:rttSlideIn .35s ease both;
-}
-.rtt-task-row:nth-child(1){animation-delay:.02s;} .rtt-task-row:nth-child(2){animation-delay:.05s;}
-.rtt-task-row:nth-child(3){animation-delay:.08s;} .rtt-task-row:nth-child(4){animation-delay:.11s;}
-.rtt-task-row:nth-child(5){animation-delay:.14s;} .rtt-task-row:nth-child(6){animation-delay:.17s;}
-.rtt-task-row:nth-child(7){animation-delay:.20s;} .rtt-task-row:nth-child(8){animation-delay:.23s;}
-.rtt-task-row:hover{
- background:#fff!important;
- transform:translateY(-2px);
- box-shadow:0 3px 6px rgba(16,41,23,.06),0 14px 30px rgba(16,41,23,.10);
- border-color:rgba(11,83,148,.22)!important;
-}
-.rtt-task-title{font-size:13px!important;letter-spacing:-.005em;}
-
-/* ---- Badges: subtle depth ---- */
-.rtt-badge{box-shadow:0 1px 2px rgba(16,41,23,.05);}
-.rtt-badge.urgent,.rtt-badge.overdue{position:relative;}
-
-/* ---- Icon buttons: crisp hover ---- */
-.rtt-btn-icon{
- border-radius:8px!important;
- background:#fff!important;
- transition:all .18s cubic-bezier(.2,.8,.3,1)!important;
-}
-.rtt-btn-icon:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(11,83,148,.15);}
-.rtt-btn-icon.del:hover{box-shadow:0 3px 8px rgba(183,28,28,.16);}
-.rtt-btn-icon.done-btn:hover{box-shadow:0 3px 8px rgba(46,125,50,.16);}
-
-/* ---- Progress bars: shimmer sweep ---- */
-.rtt-progress-bar{height:7px!important;border-radius:99px!important;}
-.rtt-progress-fill{
- border-radius:99px!important;
- background:linear-gradient(90deg,#0B5394,#4A90D9,#0B5394)!important;
- background-size:200% 100%!important;
- animation:rttShimmer 2.4s linear infinite;
- transition:width .6s cubic-bezier(.2,.8,.3,1)!important;
-}
-
-/* ---- Form fields ---- */
-.rtt-input,.rtt-select,.rtt-textarea{border-radius:9px!important;transition:border-color .18s,box-shadow .18s,background .18s!important;}
-.rtt-input:focus,.rtt-select:focus,.rtt-textarea:focus{box-shadow:0 0 0 3px rgba(11,83,148,.1)!important;}
-
-/* ---- Section headers in permit requirements ---- */
-.rtt-section-header{
- border-radius:8px!important;
- border-left:3px solid #0B5394;
- background:linear-gradient(90deg,#EFF4FC,#F8FBFF)!important;
-}
-
-/* ---- Insight panels hover ---- */
-.rtt-insight-panel{transition:transform .25s cubic-bezier(.2,.8,.3,1),box-shadow .25s ease;}
-.rtt-insight-panel:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(33,70,46,.12);}
-
-/* ---- Master-detail split: task list + click preview ---- */
-.rtt-split{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;align-items:start;}
-.rtt-split-detail{position:sticky;top:12px;min-height:120px;}
-.rtt-task-row{cursor:pointer;}
-.rtt-task-row.selected{
- border-color:#0B5394!important;
- background:linear-gradient(135deg,#F5F9FF,#fff)!important;
- box-shadow:0 3px 6px rgba(11,83,148,.08),0 14px 30px rgba(11,83,148,.12);
-}
-.rtt-detail-card{
- background:linear-gradient(160deg,#ffffff,#f8fbf8);
- border:1px solid rgba(33,70,46,.12);
- border-top:3px solid #0B5394;
- border-radius:14px;
- padding:16px 18px;
- box-shadow:0 2px 5px rgba(16,41,23,.05),0 16px 36px rgba(16,41,23,.09);
- animation:rttSlideDetail .28s cubic-bezier(.2,.8,.3,1) both;
-}
-@keyframes rttSlideDetail{from{opacity:0;transform:translateX(12px);}to{opacity:1;transform:translateX(0);}}
-.rtt-detail-empty{
- border:1.5px dashed rgba(33,70,46,.18);
- border-radius:14px;
- padding:38px 20px;
- text-align:center;
- color:#8C9490;
- font-size:12px;
- background:rgba(244,248,244,.5);
-}
-.rtt-detail-empty .rde-icon{font-size:26px;display:block;margin-bottom:8px;opacity:.5;}
-.rtt-detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:4px;}
-.rtt-detail-id{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:#0B5394;background:#EFF4FC;border:1px solid #BFDBFE;border-radius:5px;padding:2px 7px;}
-.rtt-detail-close{background:none;border:none;font-size:15px;color:#8C9490;cursor:pointer;padding:0 2px;line-height:1;border-radius:5px;transition:color .15s;}
-.rtt-detail-close:hover{color:var(--critical,#B71C1C);}
-.rtt-detail-title{font-size:14px;font-weight:700;color:#102917;line-height:1.35;margin:6px 0 8px;}
-.rtt-detail-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
-.rtt-detail-meta{display:flex;flex-direction:column;gap:5px;font-size:11px;color:#4A6355;border-top:1px solid rgba(33,70,46,.08);padding-top:10px;margin-bottom:10px;}
-.rtt-detail-meta b{color:#102917;font-weight:600;}
-.rtt-detail-desc{font-size:11.5px;color:#4A6355;line-height:1.55;background:#F4F8F4;border-radius:8px;padding:9px 11px;margin-bottom:12px;}
-.rtt-detail-sec-title{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#6B8775;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center;}
-.rtt-detail-sec-title b{font-family:'DM Mono',monospace;color:#0B5394;font-size:11px;}
-.rtt-detail-req{
- display:flex;align-items:flex-start;gap:9px;
- padding:8px 10px;border:1px solid rgba(33,70,46,.09);border-radius:9px;
- margin-bottom:6px;background:#fff;cursor:pointer;
- transition:border-color .18s,background .18s,transform .18s;
- font-size:12px;color:#2b3d30;line-height:1.45;
-}
-.rtt-detail-req:hover{border-color:rgba(11,83,148,.35);transform:translateX(2px);}
-.rtt-detail-req input[type=checkbox]{width:15px;height:15px;margin-top:1px;flex:0 0 auto;cursor:pointer;accent-color:#0B5394;}
-.rtt-detail-req.req-done{background:#F1F8F1;border-color:rgba(46,125,50,.22);}
-.rtt-detail-req.req-done span{text-decoration:line-through;color:#8C9490;}
-.rtt-detail-alldone{
- display:flex;align-items:center;gap:8px;justify-content:space-between;
- background:linear-gradient(90deg,#E8F5E9,#F1F8F1);
- border:1px solid #A5D6A7;border-radius:9px;
- padding:8px 11px;font-size:11px;font-weight:600;color:#1B5E20;margin-top:8px;
- animation:rttFadeUp .3s ease both;
-}
-.rtt-detail-alldone button{
- background:#2E7D32;color:#fff;border:none;border-radius:7px;
- padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;
- font-family:'DM Sans',sans-serif;transition:background .18s,transform .18s;
-}
-.rtt-detail-alldone button:hover{background:#1B5E20;transform:translateY(-1px);}
-.rtt-detail-actions{display:flex;gap:7px;margin-top:13px;padding-top:12px;border-top:1px solid rgba(33,70,46,.08);}
-.rtt-detail-actions button{
- flex:1;padding:7px 10px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;
- font-family:'DM Sans',sans-serif;transition:all .18s cubic-bezier(.2,.8,.3,1);
-}
-.rtt-da-done{background:#2E7D32;border:1px solid #2E7D32;color:#fff;}
-.rtt-da-done:hover{background:#1B5E20;transform:translateY(-1px);box-shadow:0 4px 10px rgba(46,125,50,.25);}
-.rtt-da-reopen{background:#fff;border:1px solid #FFCC80;color:#E65100;}
-.rtt-da-reopen:hover{background:#FFF3E0;transform:translateY(-1px);}
-.rtt-da-edit{background:#fff;border:1px solid rgba(11,83,148,.35);color:#0B5394;}
-.rtt-da-edit:hover{background:#EFF4FC;transform:translateY(-1px);}
-@media(max-width:980px){
- .rtt-split{grid-template-columns:1fr;}
- .rtt-split-detail{position:static;order:-1;}
- .rtt-split-detail:empty{display:none;}
-}
-
-/* ---- Reduced motion accessibility ---- */
-@media(prefers-reduced-motion:reduce){
- .rtt-kpi,.rtt-task-row,.rtt-pane.active,.rtt-detail-card,.rtt-detail-alldone{animation:none!important;}
- .rtt-progress-fill{animation:none!important;}
- .rtt-kpi:hover,.rtt-task-row:hover,.rtt-insight-panel:hover,.rtt-btn-icon:hover,.rtt-detail-req:hover{transform:none;}
-}
-</style>
 <link rel="stylesheet" href="assets/leaf-login-redesign.css">
 <link rel="stylesheet" href="assets/theme-image-packs.css">
 <link rel="stylesheet" href="assets/nav-glass-polish.css?v=20260602e">
@@ -3813,7 +3466,7 @@ select[id^="rtt-filter-"]:focus{
 <!-- 
  LOGIN SCREEN
  -->
-<div id="login-screen" style="display:none;">
+<div id="login-screen">
  <div class="login-bg"></div>
 
  <!-- Decorative ferns -->
@@ -3860,18 +3513,13 @@ select[id^="rtt-filter-"]:focus{
  <button class="login-btn" id="login-btn" onclick="doLogin()">Sign In to System</button>
 
  <div class="login-hint">Enter your admin password to access the system.</div>
-
- <button type="button" class="login-back-btn" onclick="backFromLoginToLanding()" style="width:100%;margin-top:.9rem;padding:.7rem;background:transparent;border:1px solid rgba(123,170,28,.25);border-radius:8px;color:rgba(200,223,160,.7);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:background .2s,border-color .2s,color .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;">
-  <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 20 20"><path d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"/></svg>
-  Back to Home
- </button>
  </div>
 </div>
 
 <!-- 
  LANDING PAGE
  -->
-<div id="landing" style="display:block;">
+<div id="landing" style="display:none;">
  <div class="bg-layer"></div>
 
  <!-- BOTANICAL DECORATION LAYER -->
@@ -4026,10 +3674,10 @@ select[id^="rtt-filter-"]:focus{
  <li><a href="#l-team">Team</a></li>
  </ul>
  <div class="l-nav-actions">
- <button class="btn-enter" id="landing-logout-btn" onclick="logout()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);display:none;">
+ <button class="btn-enter" onclick="logout()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);">
  Logout
  </button>
- <button class="btn-enter" onclick="showLogin()">
+ <button class="btn-enter" onclick="enterSystem()">
  <svg style="width:13px;height:13px;fill:currentColor" viewBox="0 0 20 20"><path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/></svg>
  Open System
  </button>
@@ -4042,11 +3690,11 @@ select[id^="rtt-filter-"]:focus{
  <h1>Protecting<br><em>Nature</em><br>Through Law</h1>
  <p>An integrated environmental compliance and monitoring system - water quality tracking, regulatory audits, emission reporting, and closure management in one unified platform.</p>
  <div class="hero-btns">
- <button class="btn-primary-hero" onclick="showLogin()">
+ <button class="btn-primary-hero" onclick="enterSystem()">
  <svg style="width:14px;height:14px;fill:#fff" viewBox="0 0 20 20"><path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/></svg>
  Open Compliance System
  </button>
- <button class="btn-enter" onclick="showLogin()" style="border-radius:2px">View Dashboards</button>
+ <button class="btn-enter" onclick="enterSystem('compliance')" style="border-radius:2px">View Dashboards</button>
  </div>
  <div class="landing-command-panel" aria-label="Landing quick command center">
  <div class="landing-command-head">
@@ -4069,8 +3717,8 @@ select[id^="rtt-filter-"]:focus{
  <button class="landing-mini-btn" type="button" onclick="landingOpenSelectedModule()">Open</button>
  </div>
  <div class="landing-quick-actions">
- <button type="button" onclick="landingEnterModule('mapping')">Plant Map</button>
- <button type="button" onclick="landingEnterModule('audit')">New Audit</button>
+ <button type="button" onclick="enterSystem('mapping')">Plant Map</button>
+ <button type="button" onclick="enterSystem('audit')">New Audit</button>
  <button type="button" onclick="landingManualBackup()">JSON Backup</button>
  <button type="button" onclick="landingOneDriveBackup()">OneDrive</button>
  </div>
@@ -4120,145 +3768,6 @@ select[id^="rtt-filter-"]:focus{
 
  <style>@keyframes sway{0%,100%{transform:rotate(-1deg);}50%{transform:rotate(1deg);}}</style>
 
- <!-- ===== PUBLIC LIVE COMPLIANCE SNAPSHOT (visible without login) ===== -->
- <div id="l-snapshot" class="l-section-wrap">
- <div class="l-inner">
- <div class="reveal">
- <p class="l-tag">Live Compliance Snapshot</p>
- <h2 class="l-title">Permit Status,<br>Right Now</h2>
- <p class="lsnap-sub">A live view of METS environmental permits and clearances across all facilities - updated automatically as the compliance team works. Sign in for the full registry, documents, and monitoring data.</p>
- </div>
- <div class="lsnap-tiles reveal" id="lsnapTiles">
- <div class="lsnap-tile t-valid"><strong id="lsnapValid">--</strong><span>Valid / Active</span></div>
- <div class="lsnap-tile t-process"><strong id="lsnapProcess">--</strong><span>In Process</span></div>
- <div class="lsnap-tile t-apply"><strong id="lsnapApply">--</strong><span>For Application</span></div>
- <div class="lsnap-tile t-expiring"><strong id="lsnapExpiring">--</strong><span>Expiring &lt; 120 days</span></div>
- <div class="lsnap-tile t-total"><strong id="lsnapTotal">--</strong><span>Total Tracked</span></div>
- </div>
- <div class="lsnap-charts reveal">
- <div class="lsnap-chart-panel">
- <div class="lsnap-panel-title">Status Mix <small>share of registry</small></div>
- <div class="lsnap-donut-wrap">
- <div class="lsnap-donut" id="lsnapDonut"><div class="lsnap-donut-center"><strong id="lsnapDonutPct">--</strong><span>Valid</span></div></div>
- <div class="lsnap-legend" id="lsnapDonutLegend"></div>
- </div>
- </div>
- <div class="lsnap-chart-panel">
- <div class="lsnap-panel-title">By Agency <small>who issues what</small></div>
- <div class="lsnap-bars" id="lsnapAgencyBars"></div>
- </div>
- <div class="lsnap-chart-panel">
- <div class="lsnap-panel-title">By Category <small>permit types</small></div>
- <div class="lsnap-bars" id="lsnapCategoryBars"></div>
- </div>
- </div>
- <div class="lsnap-grid reveal">
- <div class="lsnap-panel">
- <div class="lsnap-panel-title">Valid Permits & Clearances <small>latest first</small></div>
- <div id="lsnapValidList" class="lsnap-list"><div class="lsnap-loading">Loading permit data...</div></div>
- </div>
- <div class="lsnap-panel">
- <div class="lsnap-panel-title">Renewals & Applications In Motion <small>what the team is working on</small></div>
- <div id="lsnapWorkList" class="lsnap-list"><div class="lsnap-loading">Loading updates...</div></div>
- <button class="lsnap-cta" onclick="showLogin()">Sign in for the full registry -&gt;</button>
- </div>
- </div>
- <div class="lsnap-updated" id="lsnapUpdated"></div>
- </div>
- </div>
-
- <style id="landing-snapshot-style">
- #l-snapshot .lsnap-sub{max-width:560px;font-size:.95rem;font-weight:300;line-height:1.75;color:var(--mist,rgba(200,223,160,.7));margin:.9rem 0 2rem;}
- .lsnap-tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px;}
- .lsnap-tile{
- background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
- border:1px solid rgba(123,170,28,.18);border-radius:14px;
- padding:16px 14px;position:relative;overflow:hidden;
- transition:transform .25s cubic-bezier(.2,.8,.3,1),border-color .25s;
- }
- .lsnap-tile:hover{transform:translateY(-3px);border-color:rgba(123,170,28,.45);}
- .lsnap-tile::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lt,#7BAA1C);}
- .lsnap-tile strong{display:block;font-family:'DM Mono',monospace;font-size:30px;line-height:1;color:#fff;}
- .lsnap-tile span{display:block;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:rgba(200,223,160,.55);margin-top:7px;}
- .lsnap-tile.t-valid{--lt:#22C55E;} .lsnap-tile.t-process{--lt:#F59E0B;}
- .lsnap-tile.t-apply{--lt:#60A5FA;} .lsnap-tile.t-expiring{--lt:#EF4444;} .lsnap-tile.t-total{--lt:#7BAA1C;}
- .lsnap-tile.t-expiring strong{color:#fca5a5;}
- .lsnap-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;}
- .lsnap-panel{
- background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
- border:1px solid rgba(123,170,28,.16);border-radius:16px;padding:18px 18px 16px;
- }
- .lsnap-panel-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.85);margin-bottom:12px;display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
- .lsnap-panel-title small{font-size:9.5px;font-weight:600;text-transform:none;letter-spacing:0;color:rgba(200,223,160,.45);}
- .lsnap-list{display:flex;flex-direction:column;gap:7px;}
- .lsnap-row{
- display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;
- background:rgba(0,20,4,.35);border:1px solid rgba(123,170,28,.1);border-radius:10px;
- padding:9px 12px;transition:border-color .2s,background .2s;
- }
- .lsnap-row:hover{border-color:rgba(123,170,28,.35);background:rgba(0,20,4,.55);}
- .lsnap-row .lr-name{font-size:12px;font-weight:600;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
- .lsnap-row .lr-meta{grid-column:1;font-size:10px;color:rgba(200,223,160,.5);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
- .lsnap-badge{grid-row:span 2;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:999px;white-space:nowrap;}
- .lsnap-badge.valid{background:rgba(34,197,94,.15);color:#86efac;border:1px solid rgba(34,197,94,.35);}
- .lsnap-badge.process{background:rgba(245,158,11,.14);color:#fcd34d;border:1px solid rgba(245,158,11,.35);}
- .lsnap-badge.apply{background:rgba(96,165,250,.14);color:#93c5fd;border:1px solid rgba(96,165,250,.35);}
- .lsnap-badge.expiring{background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.4);}
- .lsnap-loading,.lsnap-empty{font-size:11px;color:rgba(200,223,160,.4);font-style:italic;padding:8px 2px;}
- .lsnap-cta{
- width:100%;margin-top:12px;padding:9px;border-radius:9px;cursor:pointer;
- background:rgba(123,170,28,.14);border:1px solid rgba(123,170,28,.4);color:#c8dfa0;
- font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.03em;
- transition:all .2s;
- }
- .lsnap-cta:hover{background:rgba(123,170,28,.28);color:#fff;transform:translateY(-1px);}
- .lsnap-updated{margin-top:14px;font-size:10px;color:rgba(200,223,160,.35);text-align:right;font-family:'DM Mono',monospace;}
- /* live module card stats */
- .mod-live{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin:10px 0 2px;}
- .mod-live-chip{
- display:inline-flex;align-items:baseline;gap:4px;
- background:rgba(0,20,4,.4);border:1px solid rgba(123,170,28,.16);border-radius:999px;
- padding:2px 9px;font-size:9px;font-weight:700;letter-spacing:.03em;
- color:rgba(200,223,160,.6);text-transform:uppercase;
- }
- .mod-live-chip b{font-family:'DM Mono',monospace;font-size:11px;color:#fff;font-weight:700;letter-spacing:0;}
- .mod-live-chip.warn{border-color:rgba(239,68,68,.4);}
- .mod-live-chip.warn b{color:#fca5a5;}
- .mod-live-chip.ok b{color:#86efac;}
- .mod-live-bar{width:100%;height:4px;border-radius:999px;background:rgba(0,20,4,.5);overflow:hidden;margin-top:6px;}
- .mod-live-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#7BAA1C,#22C55E);width:0;transition:width .9s cubic-bezier(.2,.8,.3,1);}
- .mod-card:hover .mod-live-chip{border-color:rgba(123,170,28,.4);}
- /* charts */
- .lsnap-charts{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
- .lsnap-chart-panel{
- background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
- border:1px solid rgba(123,170,28,.16);border-radius:16px;padding:18px;min-height:180px;
- }
- .lsnap-donut-wrap{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;}
- .lsnap-donut{
- width:120px;height:120px;border-radius:50%;display:grid;place-items:center;position:relative;
- background:conic-gradient(#22C55E 0 100%);
- box-shadow:0 12px 28px rgba(0,0,0,.35);
- }
- .lsnap-donut::after{content:'';position:absolute;inset:22px;border-radius:50%;background:#0a2010;border:1px solid rgba(123,170,28,.2);}
- .lsnap-donut-center{position:relative;z-index:1;text-align:center;}
- .lsnap-donut-center strong{display:block;font-family:'DM Mono',monospace;font-size:22px;line-height:1;color:#fff;}
- .lsnap-donut-center span{display:block;font-size:8.5px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:rgba(200,223,160,.5);margin-top:3px;}
- .lsnap-legend{display:flex;flex-direction:column;gap:8px;}
- .lsnap-legend-row{display:grid;grid-template-columns:10px 1fr auto;gap:8px;align-items:center;font-size:11px;font-weight:700;color:rgba(255,255,255,.85);}
- .lsnap-legend-dot{width:10px;height:10px;border-radius:999px;background:var(--dot,#22C55E);box-shadow:0 0 0 4px color-mix(in srgb,var(--dot,#22C55E) 18%,transparent);}
- .lsnap-legend-row b{font-family:'DM Mono',monospace;color:#fff;}
- .lsnap-bars{display:flex;flex-direction:column;gap:11px;}
- .lsnap-bar-row{display:grid;grid-template-columns:minmax(78px,112px) 1fr 30px;gap:9px;align-items:center;font-size:10.5px;font-weight:700;color:rgba(255,255,255,.8);}
- .lsnap-bar-row .lb-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
- .lsnap-bar-track{height:11px;border-radius:999px;background:rgba(0,20,4,.55);overflow:hidden;border:1px solid rgba(123,170,28,.12);}
- .lsnap-bar-fill{height:100%;width:0;border-radius:999px;background:var(--bar,#7BAA1C);box-shadow:0 0 12px color-mix(in srgb,var(--bar,#7BAA1C) 40%,transparent);transition:width .9s cubic-bezier(.2,.8,.3,1);}
- .lsnap-bar-row b{font-family:'DM Mono',monospace;color:#fff;text-align:right;}
- @media(max-width:980px){.lsnap-charts{grid-template-columns:1fr;}.lsnap-donut-wrap{grid-template-columns:110px 1fr;}}
- @media(prefers-reduced-motion:reduce){.lsnap-bar-fill{transition:none;}}
- @media(max-width:980px){.lsnap-tiles{grid-template-columns:repeat(2,1fr);}.lsnap-grid{grid-template-columns:1fr;}}
- </style>
-
  <div id="l-modules" class="l-section-wrap">
  <div class="l-inner">
  <div class="reveal">
@@ -4266,55 +3775,55 @@ select[id^="rtt-filter-"]:focus{
  <h2 class="l-title">Nine Integrated Tools,<br>One Unified Platform</h2>
  </div>
  <div class="modules-grid" style="padding:0;margin-top:2rem;">
- <div class="mod-card reveal" onclick="landingEnterModule('compliance')">
+ <div class="mod-card reveal" onclick="enterSystem('compliance')">
  <div class="mod-icon"></div>
  <div class="mod-title">Compliance Dashboard</div>
  <div class="mod-desc">DENR & LLDA permits, ECC conditions, SMR logs, hazardous waste registry, stack emission & ambient air data.</div>
  <div class="mod-meta"><div class="mod-tag">Regulatory Tracking</div><div class="mod-open">Open -></div></div>
  </div>
- <div class="mod-card reveal" onclick="landingEnterModule('analytics')">
+ <div class="mod-card reveal" onclick="enterSystem('analytics')">
  <div class="mod-icon"></div>
  <div class="mod-title">Analytics Center</div>
  <div class="mod-desc">See compliance trends, permit status, audit patterns, task pressure, and operational risks in one visual overview.</div>
  <div class="mod-meta"><div class="mod-tag">Executive View</div><div class="mod-open">Open -></div></div>
  </div>
- <div class="mod-card reveal" onclick="landingEnterModule('regtasks')">
+ <div class="mod-card reveal" onclick="enterSystem('regtasks')">
  <div class="mod-icon"></div>
  <div class="mod-title">Regulatory Task Tracker</div>
  <div class="mod-desc">Track regulatory tasks, permit requirements, deadlines and priorities. Dashboard showing open, urgent, new and completed tasks.</div>
  <div class="mod-meta"><div class="mod-tag">MCS1-COM-REG-TASKS</div><div class="mod-open">Open -></div></div>
  </div>
- <div class="mod-card reveal" onclick="landingEnterModule('mapping')">
+ <div class="mod-card reveal" onclick="enterSystem('mapping')">
  <div class="mod-icon"></div>
  <div class="mod-title">Plant Map & Pinning</div>
  <div class="mod-desc">Navigate the Bancal master plan, add emoji-style area pins, attach photos/PDFs, and link permits to exact locations.</div>
  <div class="mod-meta"><div class="mod-tag">Facility Mapping</div><div class="mod-open">Open -></div></div>
  </div>
- <div class="mod-card reveal" onclick="landingEnterModule('water')">
+ <div class="mod-card reveal" onclick="enterSystem('water')">
  <div class="mod-icon"></div>
  <div class="mod-title">Daily Water Monitoring</div>
  <div class="mod-desc">Water station pH, DO, turbidity monitoring. Nutrient testing (ammonia, nitrate, phosphate). WWTP discharge quality.</div>
  <div class="mod-meta"><div class="mod-tag">MCS1-COM-F-4.12</div><div class="mod-open">Open -></div></div>
  </div>
- <div class="mod-card reveal" onclick="landingEnterModule('audit')">
+ <div class="mod-card reveal" onclick="enterSystem('audit')">
  <div class="mod-icon"></div>
  <div class="mod-title">Environmental Audit</div>
  <div class="mod-desc">Comprehensive site checklist with scoring, findings, commitment dates, departmental assignments, and full PDF reports.</div>
  <div class="mod-meta"><div class="mod-tag">MCS1-COM-F-4.11</div><div class="mod-open">Open -></div></div>
  </div>
- <div class="mod-card reveal" onclick="landingEnterModule('closure')">
+ <div class="mod-card reveal" onclick="enterSystem('closure')">
  <div class="mod-icon">OK</div>
  <div class="mod-title">Closure Monitoring</div>
  <div class="mod-desc">Track audit findings through closure - KPI dashboard, overdue alerts, incident logging, and closure certificates.</div>
  <div class="mod-meta"><div class="mod-tag">Corrective Action Tracking</div><div class="mod-open">Open -></div></div>
  </div>
- <div class="mod-card reveal" onclick="landingEnterModule('reports')">
+ <div class="mod-card reveal" onclick="enterSystem('reports')">
  <div class="mod-icon"></div>
  <div class="mod-title">Report Generator</div>
  <div class="mod-desc">Generate PowerPoint compliance reports from audit data. Add concern blocks, images, and custom table entries.</div>
  <div class="mod-meta"><div class="mod-tag">MCSSI Report Tool</div><div class="mod-open">Open -></div></div>
  </div>
- <div class="mod-card reveal" onclick="landingEnterModule('finance')">
+ <div class="mod-card reveal" onclick="enterSystem('finance')">
  <div class="mod-icon"></div>
  <div class="mod-title">Compliance Finance</div>
  <div class="mod-desc">Manage environmental budget allocation, payment requests, file attachments, approvals, and spending comparisons.</div>
@@ -7015,7 +6524,15 @@ select[id^="rtt-filter-"]:focus{
  <div class="module-pane" id="module-regtasks">
  <div class="rtt-main">
 
- <!-- KPI row removed per user request; stats remain visible in the Dashboard tab charts -->
+ <!-- KPI Row -->
+ <div class="rtt-kpi-grid" id="rtt-kpi-grid">
+ <div class="rtt-kpi kpi-total"><div class="rtt-kpi-label">Total Tasks</div><div class="rtt-kpi-value" id="rtt-kpi-total">0</div><div class="rtt-kpi-sub">All tasks</div></div>
+ <div class="rtt-kpi kpi-urgent"><div class="rtt-kpi-label">Urgent</div><div class="rtt-kpi-value" id="rtt-kpi-urgent">0</div><div class="rtt-kpi-sub">Needs immediate action</div></div>
+ <div class="rtt-kpi kpi-open"><div class="rtt-kpi-label">Open</div><div class="rtt-kpi-value" id="rtt-kpi-open">0</div><div class="rtt-kpi-sub">In progress / pending</div></div>
+ <div class="rtt-kpi kpi-new"><div class="rtt-kpi-label">New (7 days)</div><div class="rtt-kpi-value" id="rtt-kpi-new">0</div><div class="rtt-kpi-sub">Added this week</div></div>
+ <div class="rtt-kpi kpi-done"><div class="rtt-kpi-label">Completed</div><div class="rtt-kpi-value" id="rtt-kpi-done">0</div><div class="rtt-kpi-sub">Closed tasks</div></div>
+ <div class="rtt-kpi kpi-overdue"><div class="rtt-kpi-label">Overdue</div><div class="rtt-kpi-value" id="rtt-kpi-overdue">0</div><div class="rtt-kpi-sub">Past due date</div></div>
+ </div>
 
  <!-- Tabs -->
  <div class="rtt-tab-nav">
@@ -7072,7 +6589,6 @@ select[id^="rtt-filter-"]:focus{
  <!-- ALL TASKS PANE -->
  <div class="rtt-pane" id="rtt-pane-tasks">
  <div class="rtt-card">
- <div id="rtt-team-strip" class="rtt-team-strip" aria-label="Team members"></div>
  <div class="rtt-filter-bar">
  <select id="rtt-filter-priority" onchange="rttRenderTasks()">
  <option value="">All Priorities</option>
@@ -7096,18 +6612,9 @@ select[id^="rtt-filter-"]:focus{
  <option value="internal">Internal</option>
  <option value="other">Other / Internal Work</option>
  </select>
- <select id="rtt-filter-assigned" onchange="rttRenderTasks()">
- <option value="">All Assignees</option>
- </select>
- <select id="rtt-filter-agency" onchange="rttRenderTasks()">
- <option value="">All Agencies</option>
- </select>
  <input type="text" id="rtt-filter-search" placeholder="Search tasks..." oninput="rttRenderTasks()" style="min-width:180px;">
  </div>
- <div class="rtt-split">
- <div id="rtt-tasks-list" class="rtt-split-list"></div>
- <div id="rtt-task-detail" class="rtt-split-detail" aria-live="polite"></div>
- </div>
+ <div id="rtt-tasks-list"></div>
  </div>
  </div>
 
@@ -7874,12 +7381,15 @@ async function doLogin(){
  const loginScreen = document.getElementById('login-screen');
  loginScreen.classList.add('hide');
  setTimeout(()=> {
+ if(typeof initLandingOnce === 'function') initLandingOnce();
+ if(typeof startFirebaseInitialLoad === 'function') startFirebaseInitialLoad();
+ if(typeof startAutoSave === 'function') startAutoSave();
  loginScreen.style.display = 'none';
- loginScreen.classList.remove('hide');
- if(btn){ btn.disabled = false; btn.textContent = 'Sign In to System'; }
- const pendingModule = window._landingPendingModule || 'compliance';
- window._landingPendingModule = null;
- enterSystem(pendingModule);
+ const landing = document.getElementById('landing');
+ landing.classList.remove('hide');
+ landing.style.display = 'block';
+ document.body.style.overflow = 'hidden';
+ if(btn){ btn.disabled = false; btn.textContent = 'Sign In'; }
  }, 650);
  } else {
  // Save as a new revision so edits never overwrite an earlier saved audit.
@@ -8010,21 +7520,6 @@ async function enterSystem(module='compliance'){
  switchModule(module);
  },600);
 }
-function backFromLoginToLanding(){
- // Go back from login screen to the landing page
- const loginScreen = document.getElementById('login-screen');
- const l = document.getElementById('landing');
- loginScreen.classList.add('hide');
- setTimeout(()=>{
-  loginScreen.style.display = 'none';
-  loginScreen.classList.remove('hide');
-  window._landingPendingModule = null;
-  l.style.display = 'block';
-  l.classList.remove('hide');
-  document.body.style.overflow = 'hidden';
-  window.scrollTo({top:0, behavior:'instant'});
- }, 600);
-}
 function backToLanding(){
  // Go back to landing/homepage from the dashboard
  const l=document.getElementById('landing');
@@ -8033,71 +7528,40 @@ function backToLanding(){
  l.classList.remove('hide');
  l.style.display='block';
  document.body.style.overflow='hidden';
- // Show logout button since user is still logged in
- const logoutBtn = document.getElementById('landing-logout-btn');
- if(logoutBtn) logoutBtn.style.display='inline-flex';
  window.scrollTo({top:0,behavior:'instant'});
 }
-function showLogin(){
- // Show the login screen from the landing page
+function logout(){
+ // End the active user session and return to the sign-in screen.
+ if(typeof navCloseSettings === 'function') navCloseSettings();
+ backToLogin();
+ if(typeof showToast === 'function') showToast(' Logged out');
+}
+function backToLogin(){
+ // Go all the way back to the login screen
+ const s=document.getElementById('system-shell');
  const l=document.getElementById('landing');
  const loginScreen=document.getElementById('login-screen');
- l.classList.add('hide');
- setTimeout(()=>{
-  l.style.display='none';
-  l.classList.remove('hide');
-  const userEl=document.getElementById('login-user');
-  const passEl=document.getElementById('login-pass');
-  const errEl=document.getElementById('login-error');
-  const btn=document.getElementById('login-btn');
-  if(userEl) userEl.value='';
-  if(passEl) passEl.value='';
-  if(errEl) errEl.classList.remove('show');
-  if(btn){ btn.disabled=false; btn.textContent='Sign In to System'; }
-  loginScreen.style.display='flex';
-  loginScreen.classList.remove('hide');
-  document.body.style.overflow='hidden';
-  window.scrollTo({top:0,behavior:'instant'});
-  setTimeout(()=>{ if(userEl) userEl.focus(); },100);
- },600);
-}
-function landingEnterModule(mod){
- // Called from landing page module cards/buttons.
- // If user is already logged in, go straight to the module.
- // Otherwise, go to login first, storing the intended module.
- const session = typeof rbacGetSession === 'function' ? rbacGetSession() : null;
- if(session && session.id){
-  enterSystem(mod || 'compliance');
- } else {
-  window._landingPendingModule = mod || 'compliance';
-  showLogin();
- }
-}
-function logout(){
- // End the active user session and return to the landing page.
- if(typeof navCloseSettings === 'function') navCloseSettings();
- const s=document.getElementById('system-shell');
  s.classList.remove('active');
+ l.style.display='none';
+ const userEl=document.getElementById('login-user');
+ const passEl=document.getElementById('login-pass');
+ const errEl=document.getElementById('login-error');
+ const btn=document.getElementById('login-btn');
+ if(userEl) userEl.value='';
+ if(passEl) passEl.value='';
+ if(errEl) errEl.classList.remove('show');
+ if(btn){ btn.disabled=false; btn.textContent='Sign In to System'; }
+ loginScreen.style.display='flex';
+ loginScreen.classList.remove('hide');
+ document.body.style.overflow='hidden';
+ window.scrollTo({top:0,behavior:'instant'});
  window._metsCurrentUser=null;
- if(typeof rbacClearSession === 'function') rbacClearSession();
+ rbacClearSession();
  document.body.classList.remove('viewer-mode','editor-mode');
  const banner=document.getElementById('viewer-banner');
  if(banner) banner.style.display='none';
  const nav=document.querySelector('.sys-navbar');
  if(nav) nav.style.marginTop='';
- const l=document.getElementById('landing');
- l.classList.remove('hide');
- l.style.display='block';
- document.body.style.overflow='hidden';
- // Hide logout button since user is now logged out
- const logoutBtn = document.getElementById('landing-logout-btn');
- if(logoutBtn) logoutBtn.style.display='none';
- window.scrollTo({top:0,behavior:'instant'});
- if(typeof showToast === 'function') showToast(' Logged out');
-}
-function backToLogin(){
- // Go all the way back to the landing page (new flow: landing -> login -> dashboard)
- backToLanding();
 }
 function switchModule(id){
  document.querySelectorAll('.module-pane').forEach(p=>p.classList.remove('active'));
@@ -17686,13 +17150,11 @@ function saveLandingData(){
  if(typeof fbScheduleSave === 'function') fbScheduleSave('landing page', 350);
  else if(typeof jbPush === 'function') setTimeout(jbPush, 400);
  }
- // Only connect to Firebase if the user has already logged in (session exists)
- const _hasSess = typeof rbacGetSession === 'function' && rbacGetSession() && rbacGetSession().id;
- if(_hasSess && typeof startFirebaseInitialLoad === 'function') startFirebaseInitialLoad();
+ if(typeof startFirebaseInitialLoad === 'function') startFirebaseInitialLoad();
  // _fbRef is set once Firebase is ready; if it's not set yet, defer scheduling.
  if(typeof _fbRef !== 'undefined' && _fbRef){
  _doSchedule();
- } else if(_hasSess) {
+ } else {
  // Poll briefly for Firebase init (max ~3 s) then push
  let _tries = 0;
  const _waitForFb = setInterval(()=>{
@@ -20306,15 +19768,17 @@ function initAppCoreOnce(){
  const rgDate=document.getElementById('rg-date'); if(rgDate && !rgDate.value) rgDate.value=today;
  const mcDate=document.getElementById('mc-closure-date'); if(mcDate && !mcDate.value) mcDate.value=today;
  if(typeof updateWmHeroDate === 'function') updateWmHeroDate();
- // Note: body overflow is managed by the screen transitions (landing=hidden, dashboard=auto)
+ document.body.style.overflow='hidden';
+ const landing=document.getElementById('landing');
+ if(landing) landing.style.overflow='auto';
  setTimeout(checkAutoRestore, 800);
 }
 
 function landingOpenSelectedModule(){
  const sel = document.getElementById('landingQuickModule');
  const moduleId = (sel && sel.value) ? sel.value : 'compliance';
+ enterSystem(moduleId);
  if(sel) sel.value = '';
- landingEnterModule(moduleId);
 }
 
 function landingManualBackup(){
@@ -20322,7 +19786,7 @@ function landingManualBackup(){
  downloadJsonBackup();
  setTimeout(landingRefreshSnapshot, 300);
  } else {
- landingEnterModule('compliance');
+ enterSystem('compliance');
  }
 }
 
@@ -20331,193 +19795,13 @@ function landingOneDriveBackup(){
  openOneDriveBackupSettings();
  setTimeout(landingRefreshSnapshot, 300);
  } else {
- landingEnterModule('compliance');
+ enterSystem('compliance');
  }
 }
 
 function landingSetText(id, value){
  const el = document.getElementById(id);
  if(el) el.textContent = value;
-}
-
-// ---- Public permit snapshot (visible pre-login) ----
-function lsnapEsc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function lsnapParseDate(s){
- s=String(s||'').trim();
- if(!s||s==='-'||/until amended/i.test(s)) return null;
- const d=new Date(s.replace(/\s*\/.*$/,'')); // "Mar 2025 / Renewed" -> "Mar 2025"
- return isNaN(d.getTime())?null:d;
-}
-function landingRenderPermitSnapshot(){
- const tilesEl=document.getElementById('lsnapTiles');
- if(!tilesEl) return;
- const rows=(typeof APL_DATA!=='undefined'&&Array.isArray(APL_DATA))?APL_DATA:[];
- const get=(r,i)=>Array.isArray(r)?String(r[i]||''):'';
- const norm=r=>get(r,7).toLowerCase();
- const now=new Date(), soon=new Date(now.getTime()+120*24*3600*1000);
- const isExpiringSoon=r=>{
- if(!/valid/.test(norm(r))) return false;
- const d=lsnapParseDate(get(r,6));
- return !!(d && d>now && d<=soon);
- };
- const valid=rows.filter(r=>/valid/.test(norm(r)));
- const process=rows.filter(r=>/process/.test(norm(r)));
- const apply=rows.filter(r=>/application|renewal/.test(norm(r)));
- const expiring=rows.filter(isExpiringSoon);
- landingSetText('lsnapValid',String(valid.length));
- landingSetText('lsnapProcess',String(process.length));
- landingSetText('lsnapApply',String(apply.length));
- landingSetText('lsnapExpiring',String(expiring.length));
- landingSetText('lsnapTotal',String(rows.length));
-
- const rowHtml=(r,badgeClass,badgeText)=>{
- const expiryTxt=get(r,6).trim();
- return '<div class="lsnap-row">'
- +'<div class="lr-name">'+lsnapEsc(get(r,0))+'</div>'
- +'<span class="lsnap-badge '+badgeClass+'">'+badgeText+'</span>'
- +'<div class="lr-meta">'+lsnapEsc(get(r,2))+' &middot; '+lsnapEsc(get(r,3))+(expiryTxt&&expiryTxt!=='-'?' &middot; expiry: '+lsnapEsc(expiryTxt):'')+'</div>'
- +'</div>';
- };
-
- // Valid list: expiring-soon first (flagged red), then most recently issued
- const validEl=document.getElementById('lsnapValidList');
- if(validEl){
- const sorted=valid.slice().sort((a,b)=>{
- const ea=isExpiringSoon(a)?0:1, eb=isExpiringSoon(b)?0:1;
- if(ea!==eb)return ea-eb;
- const da=lsnapParseDate(get(a,5)), db=lsnapParseDate(get(b,5));
- return (db?db.getTime():0)-(da?da.getTime():0);
- }).slice(0,7);
- validEl.innerHTML=sorted.length
- ? sorted.map(r=>isExpiringSoon(r)?rowHtml(r,'expiring','Expiring'):rowHtml(r,'valid','Valid')).join('')
- : '<div class="lsnap-empty">No permit data available yet.</div>';
- }
-
- // Work-in-motion list: in process + for application
- const workEl=document.getElementById('lsnapWorkList');
- if(workEl){
- const work=process.map(r=>({r,c:'process',t:'In Process'}))
- .concat(apply.map(r=>({r,c:'apply',t:'Applying'})))
- .slice(0,6);
- workEl.innerHTML=work.length
- ? work.map(w=>rowHtml(w.r,w.c,w.t)).join('')
- : '<div class="lsnap-empty">Nothing in the pipeline right now.</div>';
- }
-
- const upd=document.getElementById('lsnapUpdated');
- if(upd){
- upd.textContent = window._lastMetsCloudSavedAt
- ? 'Data as of '+new Date(window._lastMetsCloudSavedAt).toLocaleString([], {month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'})
- : 'Data as of '+now.toLocaleString([], {month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'});
- }
-
- // ---- Charts ----
- // 1) Status mix donut
- const donut=document.getElementById('lsnapDonut');
- if(donut && rows.length){
- const other=rows.length-valid.length-process.length-apply.length;
- const segs=[
- {label:'Valid',n:valid.length,color:'#22C55E'},
- {label:'In Process',n:process.length,color:'#F59E0B'},
- {label:'For Application',n:apply.length,color:'#60A5FA'},
- ].concat(other>0?[{label:'Other',n:other,color:'#94A3B8'}]:[]);
- let acc=0;
- const stops=segs.filter(s=>s.n>0).map(s=>{
- const from=acc/rows.length*100; acc+=s.n;
- const to=acc/rows.length*100;
- return s.color+' '+from.toFixed(2)+'% '+to.toFixed(2)+'%';
- }).join(',');
- donut.style.background='conic-gradient('+stops+')';
- landingSetText('lsnapDonutPct',Math.round(valid.length/rows.length*100)+'%');
- const leg=document.getElementById('lsnapDonutLegend');
- if(leg) leg.innerHTML=segs.filter(s=>s.n>0).map(s=>
- '<div class="lsnap-legend-row"><span class="lsnap-legend-dot" style="--dot:'+s.color+';"></span><span>'+s.label+'</span><b>'+s.n+'</b></div>'
- ).join('');
- }
-
- // 2 & 3) Horizontal bars: by agency, by category
- const barPalette=['#7BAA1C','#22C55E','#0EA5E9','#F59E0B','#A78BFA','#F472B6','#94A3B8'];
- const renderBars=(elId, index)=>{
- const el=document.getElementById(elId);
- if(!el) return;
- const counts={};
- rows.forEach(r=>{const k=get(r,index).trim()||'Other';counts[k]=(counts[k]||0)+1;});
- const entries=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,6);
- const max=entries.length?entries[0][1]:1;
- el.innerHTML=entries.map(([label,n],i)=>
- '<div class="lsnap-bar-row"><span class="lb-label" title="'+lsnapEsc(label)+'">'+lsnapEsc(label)+'</span>'
- +'<div class="lsnap-bar-track"><div class="lsnap-bar-fill" style="--bar:'+barPalette[i%barPalette.length]+';" data-w="'+(n/max*100).toFixed(1)+'"></div></div>'
- +'<b>'+n+'</b></div>'
- ).join('');
- // animate widths on next frame so the transition plays
- requestAnimationFrame(()=>requestAnimationFrame(()=>{
- el.querySelectorAll('.lsnap-bar-fill').forEach(f=>{f.style.width=f.dataset.w+'%';});
- }));
- };
- renderBars('lsnapAgencyBars',2);
- renderBars('lsnapCategoryBars',1);
-}
-
-// ---- Live per-module stats on the landing module cards ----
-function landingRenderModuleLive(){
- const grid=document.querySelector('#l-modules .modules-grid');
- if(!grid) return;
- const A=x=>Array.isArray(x)?x:[];
- const chip=(label,val,cls)=>'<span class="mod-live-chip'+(cls?' '+cls:'')+'"><b>'+val+'</b> '+label+'</span>';
- const bar=pct=>'<div class="mod-live-bar"><i data-w="'+Math.max(0,Math.min(100,pct)).toFixed(0)+'"></i></div>';
-
- // Gather state defensively (some modules may not have loaded data yet)
- const apl=(typeof APL_DATA!=='undefined')?A(APL_DATA):[];
- const aplValid=apl.filter(r=>/valid/i.test(String(r&&r[7]||''))).length;
- const tasks=(typeof RTT_TASKS!=='undefined')?A(RTT_TASKS):[];
- const tOpen=tasks.filter(t=>t.status!=='done').length;
- const tUrgent=tasks.filter(t=>t.priority==='urgent'&&t.status!=='done').length;
- const tOver=(typeof rttIsOverdue==='function')?tasks.filter(rttIsOverdue).length:0;
- const tDone=tasks.length-tOpen;
- const cls=(window.CLS_STATE&&typeof CLS_STATE!=='undefined')?CLS_STATE:{findings:[],closures:{}};
- const findings=A(cls.findings);
- const closedCount=findings.filter(f=>{
- const uid=(typeof clsFindingUid==='function')?clsFindingUid(f):(f&&f.id);
- return !!(cls.closures&&(cls.closures[uid]||cls.closures[f&&f.id]));
- }).length;
- const openFindings=findings.length-closedCount;
- const pins=(typeof PLANT_MAP_STATE!=='undefined'&&PLANT_MAP_STATE)?A(PLANT_MAP_STATE.points).length:0;
- const bldgs=(typeof PLANT_MAP_STATE!=='undefined'&&PLANT_MAP_STATE)?A(PLANT_MAP_STATE.buildings).length:0;
- const wq=(typeof WATER_QUALITY_DATA!=='undefined')?A(WATER_QUALITY_DATA).length:0;
- const smr=((typeof DENR_SMR_DATA!=='undefined')?A(DENR_SMR_DATA).length:0)
- +((typeof LLDA_SMR_DATA!=='undefined')?A(LLDA_SMR_DATA).length:0);
- const hw=(typeof HW_DATA!=='undefined')?A(HW_DATA).length:0;
- const fin=(typeof FIN_DATA!=='undefined')?A(FIN_DATA):[];
- const finTotal=fin.reduce((s,r)=>s+(parseFloat(r&&r.amount)||0),0);
- const finFmt=finTotal>=1e6?('&#8369;'+(finTotal/1e6).toFixed(1)+'M'):finTotal>=1e3?('&#8369;'+(finTotal/1e3).toFixed(0)+'K'):('&#8369;'+finTotal.toFixed(0));
-
- const stats={
- compliance: chip('permits',apl.length)+chip('valid',aplValid,'ok')+chip('SMR logs',smr)+bar(apl.length?aplValid/apl.length*100:0),
- analytics: chip('permits',apl.length)+chip('tasks',tasks.length)+chip('findings',findings.length),
- regtasks: chip('open',tOpen)+(tUrgent?chip('urgent',tUrgent,'warn'):'')+(tOver?chip('overdue',tOver,'warn'):chip('done',tDone,'ok'))+bar(tasks.length?tDone/tasks.length*100:0),
- mapping: chip('pins',pins)+chip('buildings',bldgs),
- water: chip('WQ records',wq)+chip('stations','3'),
- audit: chip('findings',findings.length)+(openFindings?chip('open',openFindings,'warn'):chip('all closed','&#10003;','ok')),
- closure: chip('closed',closedCount,'ok')+(openFindings?chip('pending',openFindings,'warn'):'')+bar(findings.length?closedCount/findings.length*100:0),
- reports: chip('SMR logs',smr)+chip('audit data',findings.length),
- finance: chip('requests',fin.length)+chip('logged',finFmt)
- };
-
- Object.keys(stats).forEach(function(key){
- const card=grid.querySelector('.mod-card[onclick*="\''+key+'\'"]');
- if(!card||!stats[key]) return;
- let live=card.querySelector('.mod-live');
- if(!live){
- live=document.createElement('div');
- live.className='mod-live';
- const meta=card.querySelector('.mod-meta');
- card.insertBefore(live, meta||null);
- }
- live.innerHTML=stats[key];
- });
- requestAnimationFrame(()=>requestAnimationFrame(()=>{
- grid.querySelectorAll('.mod-live-bar i').forEach(i=>{i.style.width=i.dataset.w+'%';});
- }));
 }
 
 function landingRefreshSnapshot(){
@@ -20536,8 +19820,6 @@ function landingRefreshSnapshot(){
  landingSetText('landingTaskCount', String(openTasks || 0));
  landingSetText('landingFindingCount', String(openFindings || 0));
  landingSetText('landingPinCount', String(pins || 0));
- landingRenderPermitSnapshot();
- landingRenderModuleLive();
  const last = document.getElementById('landingLastSave');
  if(last){
  if(window._lastMetsCloudSavedAt){
@@ -20703,8 +19985,7 @@ function rttAvatarHtml(assigned, compact=false){
  const name=assigned||'Unassigned';
  const role=member?.role || (assigned ? 'Manual / team owner' : 'No assignee');
  const photo=member?.photo;
- const clickable=assigned?' style="cursor:pointer;" data-name="'+rttXml(name)+'" onclick="event.stopPropagation();rttOpenMemberByName(this.dataset.name)"':'';
- return `<div class="rtt-assignee ${compact?'compact':''}"${clickable} title="${rttXml(name)}${role?' - '+rttXml(role):''}${assigned?' (click for profile)':''}">
+ return `<div class="rtt-assignee ${compact?'compact':''}" title="${rttXml(name)}${role?' - '+rttXml(role):''}">
  <div class="rtt-avatar">${photo?`<img src="${rttXml(photo)}" alt="">`:`<span>${rttXml(rttInitials(name))}</span>`}</div>
  <div class="rtt-assignee-text"><strong>${rttXml(name)}</strong><small>${rttXml(role)}</small></div>
  </div>`;
@@ -20744,23 +20025,6 @@ function rttSetAssignee(value){
 }
 
 // Update KPIs 
-// Animate a KPI number from its current value to the target
-function rttCountUp(el, target){
- if(!el) return;
- const from=parseInt(el.textContent,10)||0;
- const to=parseInt(target,10)||0;
- if(from===to){el.textContent=to;return;}
- if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=to;return;}
- const dur=500, start=performance.now();
- function step(now){
- const p=Math.min((now-start)/dur,1);
- const eased=1-Math.pow(1-p,3); // ease-out cubic
- el.textContent=Math.round(from+(to-from)*eased);
- if(p<1) requestAnimationFrame(step);
- }
- requestAnimationFrame(step);
-}
-
 function rttUpdateKPIs(){
  const today=rttNow(), week=rttDaysAgo(7);
  const total=RTT_TASKS.length;
@@ -20769,12 +20033,12 @@ function rttUpdateKPIs(){
  const newT=RTT_TASKS.filter(t=>t.created>=week).length;
  const done=RTT_TASKS.filter(t=>t.status==='done').length;
  const overdue=RTT_TASKS.filter(rttIsOverdue).length;
- rttCountUp(document.getElementById('rtt-kpi-total'),total);
- rttCountUp(document.getElementById('rtt-kpi-urgent'),urgent);
- rttCountUp(document.getElementById('rtt-kpi-open'),open);
- rttCountUp(document.getElementById('rtt-kpi-new'),newT);
- rttCountUp(document.getElementById('rtt-kpi-done'),done);
- rttCountUp(document.getElementById('rtt-kpi-overdue'),overdue);
+ document.getElementById('rtt-kpi-total').textContent=total;
+ document.getElementById('rtt-kpi-urgent').textContent=urgent;
+ document.getElementById('rtt-kpi-open').textContent=open;
+ document.getElementById('rtt-kpi-new').textContent=newT;
+ document.getElementById('rtt-kpi-done').textContent=done;
+ document.getElementById('rtt-kpi-overdue').textContent=overdue;
 }
 
 // Compact task card for dashboard 
@@ -20907,35 +20171,14 @@ function rttRenderDashboard(){
 }
 
 // All Tasks list 
-// Builds the "Assigned To" and "Agency" filter dropdowns from whatever
-// values actually exist in RTT_TASKS right now, so the list only ever
-// shows real assignees and agencies with tasks (open or closed).
-function rttPopulateTaskFilters(){
- const aSel=document.getElementById('rtt-filter-assigned');
- const gSel=document.getElementById('rtt-filter-agency');
- if(!aSel||!gSel) return;
- const oldA=aSel.value, oldG=gSel.value;
- const assignees=[...new Set(RTT_TASKS.map(t=>(t.assigned||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
- const agencies=[...new Set(RTT_TASKS.map(t=>(t.agency||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
- aSel.innerHTML='<option value="">All Assignees</option>'+assignees.map(a=>`<option value="${rttXml(a)}">${rttXml(a)}</option>`).join('');
- gSel.innerHTML='<option value="">All Agencies</option>'+agencies.map(g=>`<option value="${rttXml(g)}">${rttXml(g)}</option>`).join('');
- if(assignees.includes(oldA)) aSel.value=oldA;
- if(agencies.includes(oldG)) gSel.value=oldG;
-}
 function rttRenderTasks(){
- rttPopulateTaskFilters();
- rttRenderTeamStrip();
  const fp=document.getElementById('rtt-filter-priority').value;
  const fs=document.getElementById('rtt-filter-status').value;
  const ft=document.getElementById('rtt-filter-type').value;
- const fa=document.getElementById('rtt-filter-assigned').value;
- const fg=document.getElementById('rtt-filter-agency').value;
  const fq=(document.getElementById('rtt-filter-search').value||'').toLowerCase();
  let tasks=[].concat(RTT_TASKS);
  if(fp) tasks=tasks.filter(function(t){return t.priority===fp;});
  if(ft) tasks=tasks.filter(function(t){return t.type===ft;});
- if(fa) tasks=tasks.filter(function(t){return (t.assigned||'')===fa;});
- if(fg) tasks=tasks.filter(function(t){return (t.agency||'')===fg;});
  if(fs==='done') tasks=tasks.filter(function(t){return t.status==='done';});
  else if(fs==='open') tasks=tasks.filter(function(t){return t.status!=='done'&&!rttIsOverdue(t);});
  else if(fs==='overdue') tasks=tasks.filter(rttIsOverdue);
@@ -20948,7 +20191,7 @@ function rttRenderTasks(){
  return(a.due||'9999').localeCompare(b.due||'9999');
  });
  const c=document.getElementById('rtt-tasks-list');
- if(!tasks.length){c.innerHTML='<div class="rtt-empty">No tasks match the current filters.</div>';rttRenderDetail();return;}
+ if(!tasks.length){c.innerHTML='<div class="rtt-empty">No tasks match the current filters.</div>';return;}
  let html='';
  tasks.forEach(function(t){
  const reqTotal=(t.reqs||[]).length;
@@ -20958,7 +20201,7 @@ function rttRenderTasks(){
  const actionBtn=t.status!=='done'
  ?'<button class="rtt-btn-icon done-btn" onclick="rttMarkDone(\'' + t.id + '\')" title="Mark as completed">&#9989;</button>'
  :'<button class="rtt-btn-icon" onclick="rttReopen(\'' + t.id + '\')" title="Reopen">&#8617;</button>';
- html+='<div class="rtt-task-row'+(t.id===_rttSelectedId?' selected':'')+'" style="border-left:3px solid '+borderColor+';" onclick="rttSelectTask(event,\''+t.id+'\')" title="Click to preview task">'
+ html+='<div class="rtt-task-row" style="border-left:3px solid '+borderColor+';">'
  +'<div class="rtt-task-id">'+t.id+'</div>'
  +'<div class="rtt-task-body">'
  +'<div class="rtt-task-title">'+rttXml(t.title)+'</div>'
@@ -20981,192 +20224,6 @@ function rttRenderTasks(){
  });
  c.innerHTML=html;
  rttUpdateKPIs();
- rttRenderDetail();
-}
-
-// ---- Task preview panel (master-detail) ----
-let _rttSelectedId = null;
-
-function rttSelectTask(e, id){
- // Ignore clicks that land on action buttons / checkboxes inside the row
- if(e && e.target && e.target.closest && e.target.closest('.rtt-btn-icon,button,input,a')) return;
- _rttSelectedId = (_rttSelectedId===id) ? null : id; // click again to deselect
- rttRenderTasks();
-}
-
-function rttCloseDetail(){
- _rttSelectedId=null;
- rttRenderTasks();
-}
-
-// ---- Team member strip + profile panel ----
-function rttRenderTeamStrip(){
- const strip=document.getElementById('rtt-team-strip');
- if(!strip) return;
- const members=rttTeamMembers();
- if(!members.length){strip.innerHTML='';return;}
- const activeFilter=(document.getElementById('rtt-filter-assigned')||{}).value||'';
- let html='<span class="rtt-team-strip-label">Team:</span>';
- members.forEach(function(m){
- const openCount=RTT_TASKS.filter(t=>t.assigned===m.name && t.status!=='done').length;
- html+='<div class="rtt-team-chip'+(activeFilter===m.name?' active':'')+'" data-name="'+rttXml(m.name)+'"'
- +' onclick="rttOpenMemberByName(this.dataset.name)" title="Click for '+rttXml(m.name)+'\'s profile & tasks">'
- +'<div class="rtc-avatar">'+(m.photo?'<img src="'+rttXml(m.photo)+'" alt="">':'<span>'+rttXml(rttInitials(m.name))+'</span>')+'</div>'
- +'<div><div class="rtc-name">'+rttXml(m.name.split(' ')[0])+'</div><div class="rtc-role">'+rttXml(m.role||'')+'</div></div>'
- +'<span class="rtc-count">'+openCount+'</span>'
- +'</div>';
- });
- strip.innerHTML=html;
-}
-
-function rttEnsureMemberOverlay(){
- let ov=document.getElementById('rtt-member-overlay');
- if(ov) return ov;
- ov=document.createElement('div');
- ov.id='rtt-member-overlay';
- ov.addEventListener('click',function(e){ if(e.target===ov) rttCloseMember(); });
- document.body.appendChild(ov);
- document.addEventListener('keydown',function(e){ if(e.key==='Escape') rttCloseMember(); });
- return ov;
-}
-
-function rttOpenMemberByName(name){
- if(!name) return;
- const member=rttFindTeamMember(name)||{name:name,role:'Team / Department',bio:'',tags:[],photo:''};
- const ov=rttEnsureMemberOverlay();
- const mine=RTT_TASKS.filter(t=>t.assigned===member.name);
- const open=mine.filter(t=>t.status!=='done');
- const urgent=open.filter(t=>t.priority==='urgent');
- const overdue=mine.filter(rttIsOverdue);
- const done=mine.filter(t=>t.status==='done');
- const pct=mine.length?Math.round(done.length/mine.length*100):0;
- const activeSorted=open.slice().sort(function(a,b){
- var ao=rttIsOverdue(a)?0:1, bo=rttIsOverdue(b)?0:1;
- if(ao!==bo)return ao-bo;
- return (a.due||'9999').localeCompare(b.due||'9999');
- });
- const taskItem=function(t){
- const bc=rttIsOverdue(t)?'#B71C1C':t.priority==='urgent'?'#B71C1C':t.priority==='high'?'#E65100':'#1565C0';
- return '<div class="rtt-mp-task" style="border-left-color:'+bc+';" data-id="'+t.id+'" onclick="rttMemberJumpToTask(this.dataset.id)">'
- +'<span class="mpt-title">'+rttXml(t.title)+'</span>'
- +(t.due?'<span class="mpt-due'+(rttIsOverdue(t)?' overdue':'')+'">'+t.due+'</span>':'')
- +'</div>';
- };
- ov.innerHTML='<div class="rtt-member-panel" role="dialog" aria-label="Team member profile">'
- +'<div class="rtt-mp-head">'
- +'<div class="rtt-mp-avatar">'+(member.photo?'<img src="'+rttXml(member.photo)+'" alt="">':rttXml(rttInitials(member.name)))+'</div>'
- +'<div><div class="rtt-mp-name">'+rttXml(member.name)+'</div><div class="rtt-mp-role">'+rttXml(member.role||'')+'</div></div>'
- +'<button class="rtt-mp-close" onclick="rttCloseMember()" title="Close">&#10005;</button>'
- +'</div>'
- +'<div class="rtt-mp-body">'
- +(member.bio?'<div class="rtt-mp-bio">'+rttXml(member.bio)+'</div>':'')
- +((member.tags&&member.tags.length)?'<div class="rtt-mp-tags">'+member.tags.map(tg=>'<span class="rtt-mp-tag">'+rttXml(tg)+'</span>').join('')+'</div>':'')
- +'<div class="rtt-mp-stats">'
- +'<div class="rtt-mp-stat" style="--ms:#0B5394;"><strong>'+mine.length+'</strong><span>Assigned</span></div>'
- +'<div class="rtt-mp-stat" style="--ms:#E65100;"><strong>'+open.length+'</strong><span>Open</span></div>'
- +'<div class="rtt-mp-stat" style="--ms:#B71C1C;"><strong>'+overdue.length+'</strong><span>Overdue</span></div>'
- +'<div class="rtt-mp-stat" style="--ms:#2E7D32;"><strong>'+done.length+'</strong><span>Done</span></div>'
- +'</div>'
- +(mine.length?'<div style="font-size:10px;color:#6B8775;margin:4px 0 2px;">Completion: <b style="color:#102917;">'+pct+'%</b></div><div class="rtt-progress-bar" style="margin-bottom:4px;"><div class="rtt-progress-fill" style="width:'+pct+'%;"></div></div>':'')
- +'<div class="rtt-mp-sec"><span>Active tasks</span><b style="font-family:DM Mono,monospace;color:#0B5394;">'+open.length+'</b></div>'
- +(activeSorted.length?activeSorted.map(taskItem).join(''):'<div class="rtt-mp-empty">No active tasks assigned.</div>')
- +(urgent.length?'<div class="rtt-mp-sec" style="color:#B71C1C;"><span>&#9888; Urgent</span></div>'+urgent.map(taskItem).join(''):'')
- +'<button class="rtt-mp-filter-btn" data-name="'+rttXml(member.name)+'" onclick="rttFilterByMember(this.dataset.name)">&#128269; Show only '+rttXml(member.name.split(' ')[0])+'\'s tasks in list</button>'
- +'</div>'
- +'</div>';
- ov.classList.add('open');
-}
-
-function rttCloseMember(){
- const ov=document.getElementById('rtt-member-overlay');
- if(ov){ov.classList.remove('open');ov.innerHTML='';}
-}
-
-function rttFilterByMember(name){
- rttCloseMember();
- rttPopulateTaskFilters();
- const sel=document.getElementById('rtt-filter-assigned');
- if(sel){
- const wasActive=(sel.value===name);
- sel.value=wasActive?'':name;
- if(!wasActive && sel.value!==name){
- // Member has no tasks yet, so their name isn't in the options
- sel.value='';
- if(typeof showToast==='function') showToast('No tasks assigned to '+name+' yet');
- }
- }
- rttRenderTasks();
-}
-
-function rttMemberJumpToTask(id){
- rttCloseMember();
- rttTab('tasks');
- _rttSelectedId=id;
- rttRenderTasks();
- const row=document.querySelector('.rtt-task-row.selected');
- if(row&&row.scrollIntoView) row.scrollIntoView({behavior:'smooth',block:'center'});
-}
-
-function rttRenderDetail(){
- const panel=document.getElementById('rtt-task-detail');
- if(!panel) return;
- const t=_rttSelectedId ? RTT_TASKS.find(x=>x.id===_rttSelectedId) : null;
- if(!t){
- _rttSelectedId=null;
- panel.innerHTML='<div class="rtt-detail-empty"><span class="rde-icon">&#128203;</span>Select a task from the list<br>to preview it and tick off finished requirements.</div>';
- return;
- }
- const reqs=t.reqs||[];
- const reqDone=reqs.filter(r=>r.done).length;
- const prog=reqs.length?Math.round(reqDone/reqs.length*100):0;
- const reqHtml=reqs.length
- ? reqs.map((r,i)=>
- '<label class="rtt-detail-req'+(r.done?' req-done':'')+'">'
- +'<input type="checkbox" '+(r.done?'checked':'')+' onchange="rttToggleReq(\''+t.id+'\','+i+',this.checked)">'
- +'<span>'+rttXml(r.text)+'</span>'
- +'</label>').join('')
- : '<div style="font-size:11px;color:#8C9490;font-style:italic;padding:4px 0 8px;">No requirements listed for this task. Use Edit to add a checklist.</div>';
- const allDoneBanner=(reqs.length && reqDone===reqs.length && t.status!=='done')
- ? '<div class="rtt-detail-alldone"><span>&#127881; All requirements complete!</span><button onclick="rttMarkDone(\''+t.id+'\')">Mark Task Done</button></div>'
- : '';
- const statusAction=t.status!=='done'
- ? '<button class="rtt-da-done" onclick="rttMarkDone(\''+t.id+'\')">&#9989; Mark Done</button>'
- : '<button class="rtt-da-reopen" onclick="rttReopen(\''+t.id+'\')">&#8617; Reopen</button>';
- panel.innerHTML=
- '<div class="rtt-detail-card">'
- +'<div class="rtt-detail-head">'
- +'<span class="rtt-detail-id">'+t.id+'</span>'
- +'<button class="rtt-detail-close" onclick="rttCloseDetail()" title="Close preview">&#10005;</button>'
- +'</div>'
- +'<div class="rtt-detail-title">'+rttXml(t.title)+'</div>'
- +'<div class="rtt-detail-badges">'+rttPriorityBadge(t.priority)+' '+rttTypeBadge(t.type)+' '+rttStatusBadge(t)+'</div>'
- +'<div class="rtt-detail-meta">'
- +(t.assigned?'<span>&#128100; Assigned to <b>'+rttXml(t.assigned)+'</b></span>':'')
- +(t.agency?'<span>&#127963; Agency: <b>'+rttXml(t.agency)+'</b></span>':'')
- +(t.site?'<span>&#128205; Site: <b>'+rttXml(t.site)+'</b></span>':'')
- +(t.due?'<span style="color:'+(rttIsOverdue(t)?'var(--critical)':'inherit')+';">&#128197; Due: <b>'+t.due+'</b>'+(rttIsOverdue(t)?' (overdue)':'')+'</span>':'')
- +(t.ref?'<span>&#128278; Ref: <b>'+rttXml(t.ref)+'</b></span>':'')
- +'</div>'
- +(t.desc?'<div class="rtt-detail-desc">'+rttXml(t.desc)+'</div>':'')
- +'<div class="rtt-detail-sec-title"><span>Requirements checklist</span>'+(reqs.length?'<b>'+reqDone+'/'+reqs.length+'</b>':'')+'</div>'
- +(reqs.length?'<div class="rtt-progress-bar" style="margin:0 0 9px;"><div class="rtt-progress-fill" style="width:'+prog+'%;"></div></div>':'')
- +reqHtml
- +allDoneBanner
- +'<div class="rtt-detail-actions">'
- +statusAction
- +'<button class="rtt-da-edit" onclick="rttEditTask(\''+t.id+'\')">&#9999; Edit</button>'
- +'</div>'
- +'</div>';
-}
-
-function rttToggleReq(id, idx, checked){
- if(typeof markRegTasksEditing === 'function') markRegTasksEditing();
- const t=RTT_TASKS.find(x=>x.id===id);
- if(!t || !t.reqs || !t.reqs[idx]) return;
- t.reqs[idx].done=!!checked;
- t.updated=rttNow();
- rttSave();
- rttRenderTasks(); // refreshes list progress bars + detail panel together
 }
 
 // Requirement row builder 
@@ -23594,12 +22651,7 @@ let _rbacPendingModule = 'compliance';
 window._rbacEnterSystem = function(module){
  module = module || 'compliance';
  window._rbacPendingModule = module;
- // New flow: landing -> login -> dashboard. Use landingEnterModule if available.
- if(typeof landingEnterModule === 'function'){
-  landingEnterModule(module);
- } else {
-  enterSystem(module);
- }
+ enterSystem(module);
 };
 
 // Redirect all landing buttons to use the wrapper
@@ -28139,7 +27191,7 @@ function saveApiKey(){
   main.appendChild(shell);
  }
  function sfpMountPanels(){
-  // Saved Files Preview removed from Regulatory Tasks module (per user request) to maximize task workspace
+  sfpWrapMain('#module-regtasks', '.rtt-main', 'rtt-saved-files-preview', 'Saved Files Preview', 'tasks');
   sfpWrapMain('#module-closure', '.cls-main', 'closure-saved-files-preview', 'Closure Files Preview', 'closure');
   const waterSide = document.getElementById('wm-sidebar');
   if(waterSide && !document.getElementById('water-saved-files-preview')){
@@ -28202,10 +27254,6 @@ function saveApiKey(){
  };
  window.sfpRefreshAll = sfpRefreshAll;
  document.addEventListener('DOMContentLoaded', function(){ setTimeout(sfpRefreshAll, 900); setTimeout(sfpRefreshAll, 2500); });
-// New flow: landing is the first screen, so initialise it immediately on load
-document.addEventListener('DOMContentLoaded', function(){
- if(typeof initLandingOnce === 'function') setTimeout(initLandingOnce, 200);
-});
  const prevApply = window.applyAppState;
  if(typeof prevApply === 'function'){
   window.applyAppState = function(){
